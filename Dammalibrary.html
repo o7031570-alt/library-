@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>သဒ္ဓမ္မပညာ ဂန္ဓာလယ | Premium Library Experience</title>
+    <!-- Tailwind & Lucide Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F1D592;
+        }
+
+        body {
+            font-family: 'Pyidaungsu', sans-serif;
+            background-color: #050505;
+            color: #E5E7EB;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F1D592 50%, #D4AF37 100%);
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, #D4AF37 0%, #F1D592 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+
+        .glass-card:hover {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .hero-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(38, 62%, 52%, 0.1) 0, transparent 40%), 
+                radial-gradient(at 100% 100%, hsla(38, 62%, 52%, 0.05) 0, transparent 40%);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-reveal {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Modal Background Blur */
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Shine effect */
+        .shine-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-button::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+        .shine-button:hover::after {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-10 h-10 gold-gradient rounded-xl flex items-center justify-center text-black shadow-lg">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight gold-text">သဒ္ဓမ္မပညာ</span>
+                    <span class="text-[9px] uppercase tracking-[0.4em] text-gray-500 -mt-1 font-bold">Ganthālaya Library</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex space-x-10 text-[10px] font-black uppercase tracking-[0.2em]">
+                <a href="#home" class="text-white hover:text-gold transition-colors">ပင်မ</a>
+                <a href="#categories" class="text-gray-400 hover:text-white transition-colors">ကဏ္ဍများ</a>
+                <a href="#books" class="text-gray-400 hover:text-white transition-colors">စာအုပ်စင်</a>
+                <button onclick="openAdminModal()" class="text-gray-400 hover:text-gold transition-colors">Admin Panel</button>
+            </div>
+
+            <button class="gold-gradient px-6 py-2.5 rounded-full text-[10px] text-black font-black uppercase tracking-tighter hover:scale-105 transition-all">
+                Register
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen hero-mesh flex flex-col justify-center items-center px-6 pt-20 relative overflow-hidden">
+        <div class="text-center max-w-4xl relative z-10 animate-reveal">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-gold/30 bg-gold/5 mb-10">
+                <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i>
+                <span class="text-[10px] uppercase tracking-[0.3em] font-black gold-text">Premium Buddhist Digital Library</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-bold mb-10 leading-[1] tracking-tighter">
+                သဒ္ဓမ္မပညာ၏ <br> <span class="gold-text italic serif">အရိပ်အာဝါသ</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                ခေတ်မီဆန်းသစ်သော နည်းပညာဖြင့် ဗုဒ္ဓဒေသနာတော်များကို <br class="hidden md:block"> ကမ္ဘာတစ်ဝှမ်းသို့ အခမဲ့ ဖြန့်ဝေရာနေရာ။
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button class="gold-gradient px-12 py-5 rounded-2xl text-black font-black uppercase tracking-widest text-xs shine-button hover:scale-105 transition-all shadow-2xl shadow-gold/20">
+                    ဖတ်ရှုမှု စတင်ရန်
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="fixed inset-0 z-[200] modal-overlay hidden flex items-center justify-center p-6">
+        <div class="glass-card w-full max-w-md p-10 rounded-[3rem] border-gold/30 shadow-2xl">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-bold gold-text">Admin Login</h3>
+                <button onclick="closeAdminModal()" class="text-gray-500 hover:text-white"><i data-lucide="x"></i></button>
+            </div>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2">Username</label>
+                    <input id="adminUser" type="text" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-gold outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2">Password</label>
+                    <input id="adminPass" type="password" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-gold outline-none transition">
+                </div>
+                <button onclick="handleAdminLogin()" class="w-full gold-gradient p-5 rounded-2xl text-black font-black uppercase tracking-widest text-xs mt-4">Login to Panel</button>
+                <p id="loginError" class="text-red-500 text-xs text-center hidden">Username သို့မဟုတ် Password မှားယွင်းနေပါသည်။</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-40 max-w-7xl mx-auto px-6">
+        <div class="mb-24 text-center animate-reveal">
+            <span class="gold-text text-xs font-black uppercase tracking-[0.4em]">Browse by category</span>
+            <h2 class="text-4xl md:text-6xl font-bold mt-4">အမျိုးအစားများ</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass-card p-12 rounded-[3rem] text-center group animate-reveal">
+                <div class="w-16 h-16 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center text-gold group-hover:rotate-12 transition-transform">
+                    <i data-lucide="scroll"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">ပရိယတ္တိ</h3>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">1,500 Items</p>
+            </div>
+            <div class="glass-card p-12 rounded-[3rem] text-center group animate-reveal">
+                <div class="w-16 h-16 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center text-gold group-hover:rotate-12 transition-transform">
+                    <i data-lucide="flame"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">ဘာဝနာ</h3>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">800 Items</p>
+            </div>
+            <div class="glass-card p-12 rounded-[3rem] text-center group animate-reveal">
+                <div class="w-16 h-16 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center text-gold group-hover:rotate-12 transition-transform">
+                    <i data-lucide="landmark"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">ယဉ်ကျေးမှု</h3>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">400 Items</p>
+            </div>
+            <div class="glass-card p-12 rounded-[3rem] text-center group animate-reveal">
+                <div class="w-16 h-16 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center text-gold group-hover:rotate-12 transition-transform">
+                    <i data-lucide="music"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">တရားတော်များ</h3>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">2,000 Audios</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-40 pb-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 gold-gradient rounded-xl flex items-center justify-center text-black font-bold">သ</div>
+                <span class="text-2xl font-bold gold-text">သဒ္ဓမ္မပညာ</span>
+            </div>
+            <p class="text-[10px] text-gray-600 font-black uppercase tracking-[0.4em]">© 2026 Saddhamma Library. All Rights Reserved.</p>
+            <div class="flex space-x-6">
+                <i data-lucide="facebook" class="w-5 h-5 text-gray-600 hover:text-gold cursor-pointer transition"></i>
+                <i data-lucide="youtube" class="w-5 h-5 text-gray-600 hover:text-gold cursor-pointer transition"></i>
+                <i data-lucide="mail" class="w-5 h-5 text-gray-600 hover:text-gold cursor-pointer transition"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Modal Logic
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('loginError').classList.add('hidden');
+        }
+
+        function handleAdminLogin() {
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            const error = document.getElementById('loginError');
+
+            if (user === 'admin' && pass === 'dhamma123') {
+                alert('Admin Dashboard သို့ ဝင်ရောက်ခြင်း အောင်မြင်ပါသည်။ (Backend ချိတ်ဆက်ရန် လိုအပ်သည်)');
+                closeAdminModal();
+            } else {
+                error.classList.remove('hidden');
+            }
+        }
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-reveal');
+                    entry.target.style.opacity = "1";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
